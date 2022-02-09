@@ -4,18 +4,18 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.Supplier;
 
-public class BlockFeed {
+public class BlockFeed implements BlockSupplier {
 
     private final Random rnd = new Random();
     private final List<Supplier<Block>> blocks = List.of(
-            OBlock::new, ZBlock::new, JBlock::new
+            HBlock::new, OBlock::new, ZBlock::new, SBlock::new, YBlock::new, LBlock::new, JBlock::new
     );
 
     public BlockFeed() {
     }
 
+    @Override
     public Block nextBlock() {
         return blocks.get(rnd.nextInt(blocks.size())).get();
     }
-
 }
